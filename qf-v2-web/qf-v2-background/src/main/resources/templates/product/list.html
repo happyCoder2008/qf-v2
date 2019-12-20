@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
@@ -25,30 +26,22 @@
                 <th>图片</th>
                 <th>操作</th>
             </tr>
-            <tr>
-                <td>1</td>
-                <td>手机数码</td>
-                <td>phoneX</td>
-                <td>4999</td>
-                <td>流海屏</td>
-                <td></td>
+
+            <tr th:each="product : ${productList}">
+                <td th:text="${product.id}">1</td>
+                <td th:text="${product.typeName}">手机数码</td>
+                <td th:text="${product.name}">phoneX</td>
+                <td th:text="${product.salePrice}">4999</td>
+                <td th:text="${product.salePoint}">流海屏</td>
+                <td>
+                    <img src="#" th:src="${product.image}">
+                </td>
                 <td>
                     <button type="button" class="btn btn-primary">添加</button>
                     <button type="button" class="btn btn-danger">删除</button>
                 </td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>手机数码</td>
-                <td>MI</td>
-                <td>5999</td>
-                <td>小米</td>
-                <td></td>
-                <td>
-                    <button type="button" class="btn btn-primary">添加</button>
-                    <button type="button" class="btn btn-danger">删除</button>
-                </td>
-            </tr>
+
         </table>
     </div>
     <!--显示分页-->

@@ -14,11 +14,21 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="create_user" jdbcType="BIGINT" property="createUser" />
     <result column="update_user" jdbcType="BIGINT" property="updateUser" />
+    <result column="type_id" jdbcType="INTEGER" property="typeId" />
+    <result column="type_name" jdbcType="VARCHAR" property="typeName" />
   </resultMap>
   <sql id="Base_Column_List">
     id, name, price, sale_price, sale_point, image, stock, flag, create_time, update_time, 
-    create_user, update_user
+    create_user, update_user, type_id, type_name
   </sql>
+
+  <!--查询所有的商品-->
+  <select id="list" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+     from t_product WHERE flag = 1
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -33,13 +43,13 @@
     insert into t_product (id, name, price, 
       sale_price, sale_point, image, 
       stock, flag, create_time, 
-      update_time, create_user, update_user
-      )
+      update_time, create_user, update_user, 
+      type_id, type_name)
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{price,jdbcType=BIGINT}, 
       #{salePrice,jdbcType=BIGINT}, #{salePoint,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, 
       #{stock,jdbcType=BIGINT}, #{flag,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=BIGINT}, #{updateUser,jdbcType=BIGINT}
-      )
+      #{updateTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=BIGINT}, #{updateUser,jdbcType=BIGINT}, 
+      #{typeId,jdbcType=INTEGER}, #{typeName,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.qf.v2.entity.TProduct">
     insert into t_product
@@ -80,6 +90,12 @@
       <if test="updateUser != null">
         update_user,
       </if>
+      <if test="typeId != null">
+        type_id,
+      </if>
+      <if test="typeName != null">
+        type_name,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -117,6 +133,12 @@
       </if>
       <if test="updateUser != null">
         #{updateUser,jdbcType=BIGINT},
+      </if>
+      <if test="typeId != null">
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="typeName != null">
+        #{typeName,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -156,6 +178,12 @@
       <if test="updateUser != null">
         update_user = #{updateUser,jdbcType=BIGINT},
       </if>
+      <if test="typeId != null">
+        type_id = #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="typeName != null">
+        type_name = #{typeName,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -171,7 +199,9 @@
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       create_user = #{createUser,jdbcType=BIGINT},
-      update_user = #{updateUser,jdbcType=BIGINT}
+      update_user = #{updateUser,jdbcType=BIGINT},
+      type_id = #{typeId,jdbcType=INTEGER},
+      type_name = #{typeName,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

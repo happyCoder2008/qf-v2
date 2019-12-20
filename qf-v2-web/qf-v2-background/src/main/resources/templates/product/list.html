@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+<!--流式布局容器，就可以将固定宽度的栅格布局转换为 100% 宽度的布局。-->
+<div class="container-fluid">
+    <!--显示按钮，向右偏移8行-->
+    <div class="col-md-4 col-md-offset-8">
+        <button type="button" class="btn btn-primary">添加</button>
+        <button type="button" class="btn btn-danger">删除</button>
+    </div>
+    <!--显示表格数据-->
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <tr>
+                <th>ID</th>
+                <th>商品类别</th>
+                <th>商品名称</th>
+                <th>商品价格</th>
+                <th>商品卖点</th>
+                <th>图片</th>
+                <th>操作</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>手机数码</td>
+                <td>phoneX</td>
+                <td>4999</td>
+                <td>流海屏</td>
+                <td></td>
+                <td>
+                    <button type="button" class="btn btn-primary">添加</button>
+                    <button type="button" class="btn btn-danger">删除</button>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>手机数码</td>
+                <td>MI</td>
+                <td>5999</td>
+                <td>小米</td>
+                <td></td>
+                <td>
+                    <button type="button" class="btn btn-primary">添加</button>
+                    <button type="button" class="btn btn-danger">删除</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!--显示分页-->
+    <div class="col-md-6">
+        当前第几页，共多少条记录，共几页
+    </div>
+    <div class="col-md-6">
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li>
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li>
+                    <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>

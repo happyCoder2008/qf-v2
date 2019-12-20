@@ -26,4 +26,5 @@ public class ProductTypeController {
     public List<TProductType> list(){
         return productTypeService.getList();
     }
+
 }

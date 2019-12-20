@@ -1,5 +1,7 @@
 package com.qf.v2.common.base;
 
+import java.util.List;
+
 /**
  * @Author chenzetao
  * @Date 2019/12/19
@@ -16,4 +18,6 @@ public interface IBaseService<T> {
     int updateByPrimaryKeySelective(T t);
 
     int updateByPrimaryKey(T t);
+
+    List<T> getList();
 }

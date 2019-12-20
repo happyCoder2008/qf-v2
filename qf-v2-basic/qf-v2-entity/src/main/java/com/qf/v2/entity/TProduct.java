@@ -1,8 +1,9 @@
 package com.qf.v2.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class TProduct {
+public class TProduct implements Serializable {
     private Long id;
 
     private String name;

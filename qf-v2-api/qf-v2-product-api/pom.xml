@@ -9,4 +9,19 @@
     <version>1.0-SNAPSHOT</version>
 
 
+    <dependencies>
+        <!--引用common依赖-->
+        <dependency>
+            <groupId>com.qf</groupId>
+            <artifactId>qf-v2-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!--引用entity依赖-->
+        <dependency>
+            <groupId>com.qf</groupId>
+            <artifactId>qf-v2-entity</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>

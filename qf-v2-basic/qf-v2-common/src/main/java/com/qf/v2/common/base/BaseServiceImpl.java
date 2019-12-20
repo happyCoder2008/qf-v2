@@ -1,5 +1,7 @@
 package com.qf.v2.common.base;
 
+import java.util.List;
+
 /**
  * @Author chenzetao
  * @Date 2019/12/19
@@ -30,5 +32,9 @@ public abstract class BaseServiceImpl<T> implements IBaseService<T>{
 
     public int updateByPrimaryKey(T t) {
         return getBaseDao().updateByPrimaryKey(t);
+    }
+
+    public List<T> getList() {
+        return getBaseDao().list();
     }
 }

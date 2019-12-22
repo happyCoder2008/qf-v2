@@ -18,7 +18,7 @@ public class TProduct implements Serializable {
 
     private Long stock;
 
-    private Byte flag;
+    private Boolean flag;
 
     private Date createTime;
 
@@ -88,13 +88,6 @@ public class TProduct implements Serializable {
         this.stock = stock;
     }
 
-    public Byte getFlag() {
-        return flag;
-    }
-
-    public void setFlag(Byte flag) {
-        this.flag = flag;
-    }
 
     public Date getCreateTime() {
         return createTime;
@@ -142,5 +135,13 @@ public class TProduct implements Serializable {
 
     public void setTypeName(String typeName) {
         this.typeName = typeName == null ? null : typeName.trim();
+    }
+
+    public Boolean getFlag() {
+        return flag;
+    }
+
+    public void setFlag(Boolean flag) {
+        this.flag = flag;
     }
 }

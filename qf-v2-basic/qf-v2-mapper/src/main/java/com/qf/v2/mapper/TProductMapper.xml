@@ -51,7 +51,7 @@
       #{updateTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=BIGINT}, #{updateUser,jdbcType=BIGINT}, 
       #{typeId,jdbcType=INTEGER}, #{typeName,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.qf.v2.entity.TProduct">
+  <insert id="insertSelective" parameterType="com.qf.v2.entity.TProduct" keyProperty="id" useGeneratedKeys="true">
     insert into t_product
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">

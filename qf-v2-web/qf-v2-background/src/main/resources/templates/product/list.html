@@ -84,54 +84,69 @@
             </div>
             <div class="modal-body">
                <!--填充一个表单-->
-                <form class="form-horizontal">
+                <form class="form-horizontal" action="product/add" method="post" id="addForm">
                     <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">商品名称</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="name">
+                            <input type="text" class="form-control" id="name" name="product.name">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="typeId" class="col-sm-2 control-label">商品类别</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="typeId">
-                        </div>
-                    </div>
+
                     <div class="form-group">
                         <label for="typeId" class="col-sm-2 control-label">类别ID</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="typeId">
+                            <input type="text" class="form-control" id="typeId" name="product.typeId">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="salePrice" class="col-sm-2 control-label">商品价格</label>
+                        <label for="typeName" class="col-sm-2 control-label">类别名称</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="salePrice">
+                            <input type="text" class="form-control" id="typeName" name="product.typeName">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="price" class="col-sm-2 control-label">价格</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="price" name="product.price">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="salePrice" class="col-sm-2 control-label">商品折扣价</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="salePrice" name="product.salePrice">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="salePoint" class="col-sm-2 control-label">商品卖点</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="salePoint">
+                            <input type="text" class="form-control" id="salePoint" name="product.salePoint">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="stock" class="col-sm-2 control-label">商品库存</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="stock" name="product.stock">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="image" class="col-sm-2 control-label">商品图片</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="image">
+                            <input type="text" class="form-control" id="image" name="product.image">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="productDesc" class="col-sm-2 control-label">商品描述</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" rows="3" id="productDesc"></textarea>
+                            <textarea class="form-control" rows="3" id="productDesc" name="productDesc"></textarea>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary" id="add_product">Save changes</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -149,6 +164,10 @@
                 backdrop:"static",
                 keyboard:false
             })
+        })
+
+        $("#add_product").click(function(){
+            $("#addForm").submit();
         })
     })
 </script>

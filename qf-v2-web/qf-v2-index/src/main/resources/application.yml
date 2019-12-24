@@ -1,0 +1,12 @@
+
+dubbo:
+  application:
+    name: index
+  registry:
+    protocol: zookeeper
+    address: 192.168.206.128:2181
+server:
+  port: 9091
+spring:
+  thymeleaf:
+    cache: false

@@ -1,6 +1,7 @@
 package com.qf.qfv2background.com.qf.v2.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.google.gson.Gson;
 import com.qf.v2.api.IProductTypeService;
 import com.qf.v2.entity.TProductType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,4 +28,16 @@ public class ProductTypeController {
         return productTypeService.getList();
     }
 
+
+    @GetMapping("getListByJsonP")
+    public String getListByJsonP(String callback){
+        //获取要回调的客户端函数
+        System.out.println("callback: "+callback);
+        //回调这个函数
+        List<TProductType> list = productTypeService.getList();
+        Gson gson = new Gson();
+        String json = gson.toJson(list);
+        return callback+"("+json+")";
+        //jsonp = json +padding
+    }
 }

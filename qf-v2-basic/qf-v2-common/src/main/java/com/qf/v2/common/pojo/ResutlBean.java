@@ -1,10 +1,12 @@
 package com.qf.v2.common.pojo;
 
+import java.io.Serializable;
+
 /**
  * @Author chenzetao
  * @Date 2019/12/22
  */
-public class ResutlBean {
+public class ResutlBean  implements Serializable {
     //状态码
     private Integer statusCode;
     //操作成功后返回的信息

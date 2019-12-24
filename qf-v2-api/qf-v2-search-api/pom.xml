@@ -5,13 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.qf</groupId>
-    <artifactId>qf-v2-api</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>qf-v2-search-api</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <modules>
-        <module>qf-v2-product-api</module>
-        <module>qf-v2-search-api</module>
-    </modules>
 
 
+    <dependencies>
+        <dependency>
+            <groupId>com.qf</groupId>
+            <artifactId>qf-v2-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>

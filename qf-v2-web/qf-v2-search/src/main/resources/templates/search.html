@@ -165,7 +165,7 @@
 
 								<ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-4 boxes">
 
-									<li th:each="product : ${list}">
+									<li th:each="product : ${page.list}">
 										<div class="i-pic limit">
 											<img src="images/imgsearch1.jpg" th:src="${product.image}" />
 											<p class="title fl" th:utext="${product.salePoint}">【良品铺子旗舰店】手剥松子218g 坚果炒货零食新货巴西松子包邮</p>
@@ -232,11 +232,10 @@
 							<!--分页 -->
 							<ul class="am-pagination am-pagination-right">
 								<li class="am-disabled"><a href="#">&laquo;</a></li>
-								<li class="am-active"><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
+								<li th:each="num : ${page.navigatepageNums}" th:class="${num == page.pageNum ? 'active' : ''}">
+									 <a href="#" th:href="|search/queryByKeywords/${num}/${page.pageSize}|" th:text="${num}">2</a>
+								</li>
+
 								<li><a href="#">&raquo;</a></li>
 							</ul>
 

@@ -13,6 +13,8 @@ import java.util.List;
 public interface ISearchService {
     ResutlBean initAllData();
 
+    ResutlBean updateById(Long id);
+
     List<TProduct> queryByKeywords(String keyword);
 
     PageResultBean<TProduct> queryByKeywords(String keyword, Integer pageIndex, Integer pageSize);

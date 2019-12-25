@@ -16,9 +16,11 @@ import org.apache.solr.common.SolrInputDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.lang.model.element.VariableElement;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author chenzetao
@@ -69,13 +71,21 @@ public class SearchServiceImpl implements ISearchService {
     @Override
     public List<TProduct> queryByKeywords(String keyword) {
 
-        //设置查询条件
+        //1.设置查询条件
         SolrQuery condition = new SolrQuery();
         if(!StringUtils.isAllEmpty(keyword)){
             condition.setQuery("product_keywords:"+keyword);
         }else{
             condition.setQuery("product_keywords:*");
         }
+
+        //2.设置高亮信息
+        condition.setHighlight(true);
+        condition.addHighlightField("product_name");
+        condition.addHighlightField("product_sale_point");
+        //在高亮信息前后加上样式
+        condition.setHighlightSimplePre("<font color='red'>");
+        condition.setHighlightSimplePost("</font>");
 
         List<TProduct> productList = null;
         try {
@@ -84,16 +94,44 @@ public class SearchServiceImpl implements ISearchService {
             //得到结果
             SolrDocumentList list = queryResponse.getResults();
 
+            //获取高亮信息
+            //map中的key值string，表示查询到的高亮信息的id
+            //map中的value值map,表示查询到的高亮信息的集合
+            //Map<String, List<String>>  集合中的key，表示高亮的字段名称
+            //Map<String, List<String>>  集合中的value，表示具体的高亮信息
+            Map<String, Map<String, List<String>>> highlighting = queryResponse.getHighlighting();
+
             productList = new ArrayList<>(list.size());
             //SolrDocumentList -- List<TProduct>
             for (SolrDocument document : list) {
                 TProduct product = new TProduct();
                 product.setId(Long.parseLong(document.getFieldValue("id").toString()));
-                product.setName(document.getFieldValue("product_name").toString());
+//                product.setName(document.getFieldValue("product_name").toString());
                 product.setSalePoint(document.getFieldValue("product_sale_point").toString());
                 product.setImage(document.getFieldValue("product_images").toString());
                 product.setPrice(Long.parseLong(document.getFieldValue("product_price").toString()));
 
+                //能过id获取当前字段的高亮信息
+                Map<String, List<String>> map = highlighting.get(document.getFieldValue("id").toString());
+                //获取product_name字段的高亮信息
+                List<String> hightlightList = map.get("product_name");
+                if(hightlightList!=null && hightlightList.size()>0){
+                    //设置高亮信息
+                    product.setName(hightlightList.get(0));
+                }else{
+                    //普通的信息
+                    product.setName(document.getFieldValue("product_name").toString());
+                }
+
+                //获取product_sale_point字段的高亮信息
+                List<String> salePointhightlightList = map.get("product_sale_point");
+                if(salePointhightlightList!=null && salePointhightlightList.size()>0){
+                    //重新设置高亮信息
+                    product.setSalePoint(salePointhightlightList.get(0));
+                }else{
+                    //普通的信息
+                    product.setSalePoint(document.getFieldValue("product_sale_point").toString());
+                }
                 productList.add(product);
             }
         } catch (SolrServerException | IOException e) {

@@ -1,6 +1,9 @@
 package com.qf.v2.api;
 
 import com.qf.v2.common.pojo.ResutlBean;
+import com.qf.v2.entity.TProduct;
+
+import java.util.List;
 
 /**
  * @Author chenzetao
@@ -8,4 +11,6 @@ import com.qf.v2.common.pojo.ResutlBean;
  */
 public interface ISearchService {
     ResutlBean initAllData();
+
+    List<TProduct> queryByKeywords(String keyword);
 }
